@@ -1,10 +1,10 @@
-#include <stdio.h>
+/* W Pretorius */
+
 #include <stdlib.h>
 #include <unistd.h>
 #include <termios.h>
 #include <time.h>
 #include "board.h"
-#include "c_list.h"
 
 struct termios old_tio;
 
@@ -192,5 +192,4 @@ int main(int argc, char *argv[])
 	return EXIT_SUCCESS;
 }
 
-
-
+/* BS&T */

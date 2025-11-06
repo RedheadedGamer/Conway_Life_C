@@ -1,3 +1,4 @@
+/* W Pretorius */
 #include <stdlib.h>
 
 struct Node {
@@ -41,3 +42,5 @@ int pop(int *y, int *x)
 
 	return 1;
 }
+
+/* BS&T */

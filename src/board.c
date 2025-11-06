@@ -1,3 +1,5 @@
+/* W Pretorius */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "c_list.h"
@@ -201,3 +203,5 @@ void printmap(int mode)
 		gen++;
 	}
 }
+
+/* BS&T */
