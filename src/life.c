@@ -67,10 +67,14 @@ void simulate(int mode)
 	reset_gen();
 
 	while (game) {
-		printmap(0);
-
+		if (paused) {
+			printmap(3);
+		} else {
+			printmap(0);
+		}
 
 		c = getch();
+		
 		if (c == 'q') {
 			game = 0;
 			return;

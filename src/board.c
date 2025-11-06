@@ -165,20 +165,15 @@ void printmap(int mode)
 		printf("Simulating... Q: edit, Space: pause \n");
 	}
 
-	if (h > 9) {
-		printf(" ");
-	}
-	printf(" ");
+	printf("┌-");
 	for (i = 0; i < w; i++) {
-		printf(" %d",i);
+		printf("--");
 	}
-	printf("\n");
+	printf("┐\n");
 
 	for (i = 0; i < h; i++) {
-		if (h > 9 && i < 10) {
-			printf(" ");
-		}
-		printf("%d ",i);
+		
+		printf("| ");
 
 		for (j = 0; j < w; j++) {
 			if (map[i][j] == 1) {
@@ -191,8 +186,15 @@ void printmap(int mode)
 				printf("◇ ");
 			}
 		}
-		printf("\n");
+		printf("|\n");
 	}
+	
+	printf("└-");
+	for (i = 0; i < w; i++) {
+		printf("--");
+	}
+
+	printf("┘\n");
 
 	if (!mode) {
 		printf("Generation: %d\n", gen);
