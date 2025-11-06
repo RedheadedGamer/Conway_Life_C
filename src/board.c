@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "c_list.h"
 
 static int **map;
-static int h, w;
+static int h, w, gen;
 
 void freeme(void)
 {
@@ -13,6 +14,17 @@ void freeme(void)
 	}
 
 	free(map);
+}
+
+void clearmap(void)
+{
+	int i, j;
+
+	for (i = 0; i < h; i++) {
+		for (j = 0; j < w; j++) {
+			map[i][j] = 0;
+		}
+	}
 }
 
 int init(int y, int x)
@@ -40,11 +52,7 @@ int init(int y, int x)
 		}
 	}
 
-	for (i = 0; i < h; i++) {
-		for (j = 0; j < w; j++) {
-			map[i][j] = 0;
-		}
-	}
+	clearmap();	
 
 	return EXIT_SUCCESS;
 }
@@ -82,14 +90,84 @@ void toggle(int y, int x)
 	}
 }
 
-void printmap(void)
+void reset_gen(void)
+{
+	gen = 0;
+}
+
+
+void sim_once(void)
+{
+	int i, j, pd;
+
+	for (i = 0; i < h; i++) {
+		for (j = 0; j < w; j++) {
+			int count = 0;
+
+			if (i > 0) {
+				count += map[i - 1][j];
+			}
+			if (i < h - 1) {
+				count += map[i + 1][j];
+			}
+			if (j > 0) {
+				count += map[i][j - 1];
+			}
+			if (j < w - 1) {
+				count += map[i][j + 1];
+			}
+			
+			if (i > 0 && j > 0) {
+				count += map[i - 1][j - 1];
+			}
+			if (i < h - 1 && j < w - 1) {
+				count += map[i + 1][j + 1];
+			}
+			if (j > 0 && i < h - 1) {
+				count += map[i + 1][j - 1];
+			}
+			if (j < w - 1 && i > 0) {
+				count += map[i - 1][j + 1];
+			}
+
+			if (map[i][j] % 2 == 0) {
+				if (count == 3) {
+					push(i, j);
+				}
+			} else {
+				if ((count < 2) || (count > 3)) {
+					push(i,j);
+				}
+			}
+		}
+	}
+
+	while (pop(&i, &j)) {
+		toggle(i,j);
+	}
+}
+
+
+void printmap(int mode)
 {
 	int i, j;
 
 	printf("\033[2J");
 	printf("\033[H");
 	
-	printf("W:↑, A:←, S:↓, D:→, Q: quit, Space: toggle\n");
+	if (mode == 1) {
+		printf("W:↑, A:←, S:↓, D:→, Q: quit, Space: toggle, R: run, N: step\n");
+	} else if (mode == 2) {
+		printf("Final state: \n");
+	} else if (mode == 3) {
+		printf("Simulating... Q: edit, Space: run, N: next generation \n");
+	} else {
+		printf("Simulating... Q: edit, Space: pause \n");
+	}
+
+	if (h > 9) {
+		printf(" ");
+	}
 	printf(" ");
 	for (i = 0; i < w; i++) {
 		printf(" %d",i);
@@ -97,7 +175,11 @@ void printmap(void)
 	printf("\n");
 
 	for (i = 0; i < h; i++) {
+		if (h > 9 && i < 10) {
+			printf(" ");
+		}
 		printf("%d ",i);
+
 		for (j = 0; j < w; j++) {
 			if (map[i][j] == 1) {
 				printf("■ ");
@@ -110,5 +192,10 @@ void printmap(void)
 			}
 		}
 		printf("\n");
+	}
+
+	if (!mode) {
+		printf("Generation: %d\n", gen);
+		gen++;
 	}
 }

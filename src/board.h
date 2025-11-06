@@ -2,10 +2,12 @@
 #define BOARD_H
 
 int init(int y, int x);
-void create(int x, int y);
-void printmap(void);
+void clearmap(void);
+void printmap(int mode);
 void freeme(void);
 void selected(int y, int x);
 void toggle(int y, int x);
+void reset_gen(void);
+void sim_once(void);
 
 #endif
