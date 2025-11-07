@@ -26,7 +26,7 @@ build/life y x
 ```
 Running the executable with two arguments makes a board of size y*x*x
 
-## Evidence:
+## Showcase:
 
 
 https://github.com/user-attachments/assets/f2082320-9770-4e32-bcca-78d2ccc2a43b
