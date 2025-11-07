@@ -1,8 +1,8 @@
 # Conway_Life_C
-Conways game of life in C
+Conways game of life in C cli, tui
 
 ## Project details
-This is a c program that emulates a [Conways Game of life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) simulation in terminal based on user "drawn" input. It is written for unix systems only as the c libraries only allow that. There is very little error catching at the moment however this will be fixed in future versions and it is planned to make this work on windows systems as well.
+This is a personal c program that emulates a [Conways Game of life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) simulation in terminal based on user "drawn" input. It is written for unix systems only as the c libraries only allow that. There is very little error catching at the moment however this will be fixed in future versions and it is planned to make this work on windows systems as well.
 
 ## Usage
 ### Makefile
