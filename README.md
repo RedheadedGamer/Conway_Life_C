@@ -28,6 +28,5 @@ Running the executable with two arguments makes a board of size y*x*x
 
 ## Showcase:
 
-
-https://github.com/user-attachments/assets/f2082320-9770-4e32-bcca-78d2ccc2a43b
+https://github.com/user-attachments/assets/f303114b-1df0-4685-a6af-4e0fa0906942
 
