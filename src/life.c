@@ -177,6 +177,7 @@ int main(int argc, char *argv[])
 			selected(posy, posx);
 		} else if (c == 'c') {
 			clearmap();
+			selected(posy, posx);
 		}
 
 	}
